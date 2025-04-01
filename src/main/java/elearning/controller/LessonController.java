@@ -6,6 +6,8 @@ import elearning.dto.request.LessonReadReq;
 import elearning.dto.request.LessonUpdateReq;
 import elearning.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,29 +21,37 @@ public class LessonController {
 
     // Create
     @PostMapping(URLConst.CREATE_LESSON)
-    public Object createLesson(@RequestBody LessonCreateReq request) {
-        return lessonService.create(request);
+    public ResponseEntity<?> createLesson(@Validated @RequestBody LessonCreateReq request) {
+        Object res = lessonService.create(request);
+        return ResponseEntity.ok(res);
     }
 
     // Read
     @GetMapping(URLConst.READ_LESSON)
-    public Object readChapter(@RequestParam("sort") String sort,
-                              @RequestParam("page") int page,
-                              @RequestParam("size") int size,
-                              @RequestBody LessonReadReq request) {
-        return lessonService.read(sort, page, size, request);
+    public ResponseEntity<?> readChapter(
+            @Validated
+            @RequestParam("sort") String sort,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestBody LessonReadReq request) {
+        Object res = lessonService.read(sort, page, size, request);
+        return ResponseEntity.ok(res);
     }
 
     // Update
     @PutMapping(URLConst.UPDATE_LESSON)
-    public Object updateLesson(@PathVariable("lesson_id") String lessonID,
-                               @RequestBody LessonUpdateReq request) {
-        return lessonService.update(lessonID, request);
+    public ResponseEntity<?> updateLesson(
+            @Validated
+            @PathVariable("lesson_id") String lessonID,
+            @RequestBody LessonUpdateReq request) {
+        Object res = lessonService.update(lessonID, request);
+        return ResponseEntity.ok(res);
     }
 
     // Delete
     @DeleteMapping(URLConst.DELETE_LESSON)
-    public Object deleteLesson(@PathVariable("lesson_id") String lessonID) {
-        return lessonService.delete(lessonID);
+    public ResponseEntity<?> deleteLesson(@Validated @PathVariable("lesson_id") String lessonID) {
+        Object res = lessonService.delete(lessonID);
+        return ResponseEntity.ok(res);
     }
 }

@@ -6,6 +6,8 @@ import elearning.dto.request.ChapterReadReq;
 import elearning.dto.request.ChapterUpdateReq;
 import elearning.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,29 +22,37 @@ public class ChapterController {
 
     // Create
     @PostMapping(URLConst.CREATE_CHAPTER)
-    public Object createChapter(@RequestBody ChapterCreateReq request) {
-        return chapterService.create(request);
+    public ResponseEntity<?> createChapter(@Validated @RequestBody ChapterCreateReq request) {
+        Object res = chapterService.create(request);
+        return ResponseEntity.ok(res);
     }
 
     // Read
     @GetMapping(URLConst.READ_CHAPTER)
-    public Object readChapter(@RequestParam("sort") String sort,
-                              @RequestParam("page") int page,
-                              @RequestParam("size") int size,
-                              @RequestBody ChapterReadReq request) {
-        return chapterService.read(sort, page, size, request);
+    public ResponseEntity<?> readChapter(
+            @Validated
+            @RequestParam("sort") String sort,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestBody ChapterReadReq request) {
+        Object res = chapterService.read(sort, page, size, request);
+        return ResponseEntity.ok(res);
     }
 
     // Update
     @PutMapping(URLConst.UPDATE_CHAPTER)
-    public Object updateChapter(@PathVariable("chapter_id") String chapterID,
-                                @RequestBody ChapterUpdateReq request) {
-        return chapterService.update(chapterID, request);
+    public ResponseEntity<?> updateChapter(
+            @Validated
+            @PathVariable("chapter_id") String chapterID,
+            @RequestBody ChapterUpdateReq request) {
+        Object res = chapterService.update(chapterID, request);
+        return ResponseEntity.ok(res);
     }
 
     // Delete
     @DeleteMapping(URLConst.DELETE_CHAPTER)
-    public Object deleteChapter(@PathVariable("chapter_id") String chapterID) {
-        return chapterService.delete(chapterID);
+    public ResponseEntity<?> deleteChapter(@Validated @PathVariable("chapter_id") String chapterID) {
+        Object res = chapterService.delete(chapterID);
+        return ResponseEntity.ok(res);
     }
 }

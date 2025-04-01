@@ -8,6 +8,8 @@ import elearning.dto.request.AccountUpdateReq;
 import elearning.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("accountController")
@@ -29,41 +31,53 @@ public class AccountController {
 
     // Login
     @PostMapping(URLConst.LOGIN)
-    public Object login(@RequestBody AccountLoginReq request) {
-        return accountService.login(request);
+    public ResponseEntity<?> login(@Validated @RequestBody AccountLoginReq request) {
+        Object res = accountService.login(request);
+        String message = "Login successful";
+        return ResponseEntity.ok(message);
     }
 
     // Logout
     @PostMapping(URLConst.LOGOUT)
-    public Object logout(@PathVariable("user_id") String accountID) {
-        return accountService.logout(accountID);
+    public ResponseEntity<?> logout(@Validated @PathVariable("user_id") String accountID) {
+        Object res = accountService.logout(accountID);
+        String message = "Logout successful";
+        return ResponseEntity.ok(message);
     }
 
     // Create
     @PostMapping(URLConst.CREATE_ACCOUNT)
-    public Object createAccount(@RequestBody AccountCreateReq request) {
-        return accountService.create(request);
+    public ResponseEntity<?> createAccount(@Validated @RequestBody AccountCreateReq request) {
+        Object res = accountService.create(request);
+        return ResponseEntity.ok(res);
     }
 
     // Read
     @GetMapping(URLConst.READ_ACCOUNT)
-    public Object readAccount(@RequestParam("sort") String sort,
-                              @RequestParam("page") int page,
-                              @RequestParam("size") int size,
-                              @RequestBody AccountReadReq request) {
-        return accountService.read(sort, page, size, request);
+    public ResponseEntity<?> readAccount(
+            @Validated
+            @RequestParam("sort") String sort,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestBody AccountReadReq request) {
+        Object res = accountService.read(sort, page, size, request);
+        return ResponseEntity.ok(res);
     }
 
     // Update
     @PutMapping(URLConst.UPDATE_ACCOUNT)
-    public Object updateAccount(@PathVariable("user_id") String accountID,
-                                @RequestBody AccountUpdateReq request) {
-        return accountService.update(accountID, request);
+    public ResponseEntity<?> updateAccount(
+            @Validated
+            @PathVariable("user_id") String accountID,
+            @RequestBody AccountUpdateReq request) {
+        Object res = accountService.update(accountID, request);
+        return ResponseEntity.ok(res);
     }
 
     // Delete
     @DeleteMapping(URLConst.DELETE_ACCOUNT)
-    public Object deleteAccount(@PathVariable("user_id") String accountID) {
-        return accountService.delete(accountID);
+    public ResponseEntity<?> deleteAccount(@Validated @PathVariable("user_id") String accountID) {
+        Object res =  accountService.delete(accountID);
+        return ResponseEntity.ok(res);
     }
 }

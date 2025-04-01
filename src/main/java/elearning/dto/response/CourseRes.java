@@ -3,9 +3,10 @@ package elearning.dto.response;
 import lombok.Data;
 
 @Data
-public class AccountCourseRes {
-    private double rating;
-    private String review;
+public class CourseRes {
+    private String courseName;
+    private String teacherName;
+    private String description;
     private String status;
     private String createdDate;
     private String updatedDate;
