@@ -1,13 +1,16 @@
 package elearning.dto.request;
 
 import elearning.constant.RegexConst;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class AdminReadReq {
-    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters long")
+    @Size(min = 8, max = 50, message = "Username must be between 8 and 50 characters long")
     @Pattern(regexp = RegexConst.USERNAME, message = "Username must not contain special characters")
     private String username;
 
@@ -18,9 +21,9 @@ public class AdminReadReq {
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String createdDate;
+    @FutureOrPresent
+    private Date createdDate;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String updatedDate;
+    @FutureOrPresent
+    private Date updatedDate;
 }

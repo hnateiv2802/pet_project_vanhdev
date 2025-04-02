@@ -4,22 +4,28 @@ import elearning.dto.request.LessonCreateReq;
 import elearning.dto.request.LessonReadReq;
 import elearning.dto.request.LessonUpdateReq;
 import elearning.dto.response.LessonRes;
+import elearning.repository.LessonRepository;
 import elearning.service.LessonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 @Service("LessonService")
 public class LessonServiceImpl implements LessonService {
-
+    private final LessonRepository lessonRepository;
+    @Autowired
+    public LessonServiceImpl(LessonRepository lessonRepository) {
+        this.lessonRepository = lessonRepository;
+    }
     // Create
     @Override
     public Object create(LessonCreateReq request) {
         request.setStatus("active");
-        Instant currentTimestamp = Instant.now();
-        String createdDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC).format(currentTimestamp);
-        request.setCreatedDate(createdDate);
+        request.setCreatedDate(Date.from(Instant.now()));
 
         return request;
     }
@@ -31,7 +37,7 @@ public class LessonServiceImpl implements LessonService {
         response.setLessonName(request.getLessonName());
         response.setType(request.getType());
         response.setUrl(request.getUrl());
-        response.setOrder(request.getOrder());
+        response.setLessonOrder(request.getLessonOrder());
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
         response.setSort(sort);
@@ -44,9 +50,7 @@ public class LessonServiceImpl implements LessonService {
     // Update
     @Override
     public Object update(String lessonID, LessonUpdateReq request) {
-        Instant currentTimestamp = Instant.now();
-        String updatedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC).format(currentTimestamp);
-        request.setUpdatedDate(updatedDate);
+        request.setUpdatedDate(Date.from(Instant.now()));
 
         return request;
     }
@@ -54,6 +58,7 @@ public class LessonServiceImpl implements LessonService {
     // Delete
     @Override
     public Object delete(String lessonID) {
+
         return lessonID;
     }
 }

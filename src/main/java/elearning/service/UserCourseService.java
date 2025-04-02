@@ -14,16 +14,4 @@ public interface UserCourseService {
 
     // Delete
     public Object delete(String courseID);
-
-    // View
-    public Object view(String courseID);
-
-    // Join
-    public Object join(String courseID);
-
-    // Rate
-    public Object rate(String courseID, UserCourseRateReq request);
-
-    // Review
-    public Object review(String courseID, UserCourseReviewReq request);
 }

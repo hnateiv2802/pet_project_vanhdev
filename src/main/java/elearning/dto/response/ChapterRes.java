@@ -2,15 +2,17 @@ package elearning.dto.response;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class ChapterRes {
     private String chapterName;
     private String courseName;
     private String description;
-    private int order;
+    private int chapterOrder;
     private String status;
-    private String createdDate;
-    private String updatedDate;
+    private Date createdDate;
+    private Date updatedDate;
     private String sort;
     private int page;
     private int size;

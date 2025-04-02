@@ -6,18 +6,17 @@ import elearning.dto.request.UserCourseLessonReadReq;
 import elearning.dto.request.UserCourseLessonUpdateReq;
 import elearning.service.UserCourseLessonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 @RestController("userCourseLessonController")
 @RequestMapping("/api/v1")
 public class UserCourseLessonController {
     @Autowired
     private final UserCourseLessonService userCourseLessonService;
 
-    public UserCourseLessonController(@Qualifier("UserCourseLessonService") UserCourseLessonService userCourseLessonService) {
+
+    public UserCourseLessonController(UserCourseLessonService userCourseLessonService) {
         this.userCourseLessonService = userCourseLessonService;
     }
 
@@ -54,27 +53,6 @@ public class UserCourseLessonController {
     @DeleteMapping(URLConst.DELETE_USER_COURSE_LESSON)
     public ResponseEntity<?> deleteUserCourseLesson(@Validated @PathVariable("lesson_id") String courseID) {
         Object res = userCourseLessonService.delete(courseID);
-        return ResponseEntity.ok(res);
-    }
-
-    // Start
-    @PostMapping(URLConst.START_LESSON)
-    public ResponseEntity<?> startLesson(@Validated @PathVariable("lesson_id") String lessonID) {
-        Object res = userCourseLessonService.start(lessonID);
-        return ResponseEntity.ok(res);
-    }
-
-    // Stop
-    @PostMapping(URLConst.STOP_LESSON)
-    public ResponseEntity<?> stopLesson(@Validated @PathVariable("lesson_id") String lessonID) {
-        Object res = userCourseLessonService.stop(lessonID);
-        return ResponseEntity.ok(res);
-    }
-
-    // Finish
-    @PostMapping(URLConst.FINISH_LESSON)
-    public ResponseEntity<?> finishLesson(@Validated @PathVariable("lesson_id") String lessonID) {
-        Object res = userCourseLessonService.finish(lessonID);
         return ResponseEntity.ok(res);
     }
 }

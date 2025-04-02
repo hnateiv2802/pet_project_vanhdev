@@ -2,12 +2,16 @@ package elearning.controller;
 
 import elearning.constant.URLConst;
 import elearning.dto.request.*;
+import elearning.dto.response.AdminRes;
 import elearning.service.UserCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.Date;
 
 @RestController("userCourseController")
 @RequestMapping("/api/v1")
@@ -52,40 +56,6 @@ public class UserCourseController {
     @DeleteMapping(URLConst.DELETE_USER_COURSE)
     public ResponseEntity<?> deleteUserCourse(@Validated @PathVariable("course_id") String courseID) {
         Object res = userCourseService.delete(courseID);
-        return ResponseEntity.ok(res);
-    }
-
-    // View
-    @GetMapping(URLConst.VIEW_COURSE)
-    public ResponseEntity<?> viewCourse(@Validated @PathVariable("course_id") String courseID) {
-        Object res = userCourseService.view(courseID);
-        return ResponseEntity.ok(res);
-    }
-
-    // Join
-    @PostMapping(URLConst.JOIN_COURSE)
-    public ResponseEntity<?> joinCourse(@Validated @PathVariable("course_id") String courseID) {
-        Object res = userCourseService.join(courseID);
-        return ResponseEntity.ok(res);
-    }
-
-    // Rate
-    @PostMapping(URLConst.RATE_COURSE)
-    public ResponseEntity<?> rateCourse(
-            @Validated
-            @PathVariable("course_id") String courseID,
-            @RequestBody UserCourseRateReq request) {
-        Object res = userCourseService.rate(courseID, request);
-        return ResponseEntity.ok(res);
-    }
-
-    // Review
-    @PostMapping(URLConst.REVIEW_COURSE)
-    public ResponseEntity<?> reviewCourse(
-            @Validated
-            @PathVariable("course_id") String courseID,
-            @RequestBody UserCourseReviewReq request) {
-        Object res = userCourseService.review(courseID, request);
         return ResponseEntity.ok(res);
     }
 }

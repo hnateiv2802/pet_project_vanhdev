@@ -1,13 +1,11 @@
 package elearning.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
-
-public class User {
+@Entity(name="adminEntity")
+@Table(name="adminEntity")
+public class AdminEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,9 +15,6 @@ public class User {
 
     @Column(name="password")
     private String password;
-
-    @Column(name="name")
-    private String name;
 
     @Column(name="status")
     private String status;

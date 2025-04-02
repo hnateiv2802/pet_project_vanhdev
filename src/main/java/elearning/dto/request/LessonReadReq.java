@@ -1,10 +1,13 @@
 package elearning.dto.request;
 
 import elearning.constant.RegexConst;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class LessonReadReq {
@@ -20,17 +23,17 @@ public class LessonReadReq {
     @Pattern(regexp = RegexConst.URL, message = "Status must be either 'active' or 'inactive'")
     private String url;
 
-    @Positive(message = "Order must be greater than zero")
-    private int order;
+    @Positive(message = "Lesson Order must be greater than zero")
+    private int lessonOrder;
 
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String createdDate;
+    @FutureOrPresent
+    private Date createdDate;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String updatedDate;
+    @FutureOrPresent
+    private Date updatedDate;
 
     @Positive(message = "ChapterID must be greater than zero")
     private int chapterID;

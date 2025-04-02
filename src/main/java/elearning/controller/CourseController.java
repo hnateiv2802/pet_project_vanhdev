@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1")
 public class CourseController {
-    @Autowired
-    private final CourseService courseService;
 
+    private final CourseService courseService;
+    @Autowired
     public CourseController(@Qualifier("CourseService") CourseService courseService) {
         this.courseService = courseService;
     }

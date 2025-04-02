@@ -1,11 +1,10 @@
 package elearning.dto.request;
 
 import elearning.constant.RegexConst;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class UserCourseReadReq {
@@ -18,11 +17,11 @@ public class UserCourseReadReq {
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String createdDate;
+    @FutureOrPresent
+    private Date createdDate;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String updatedDate;
+    @FutureOrPresent
+    private Date updatedDate;
 
     @Positive(message = "UserID must be greater than zero")
     private int userID;

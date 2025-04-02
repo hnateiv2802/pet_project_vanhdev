@@ -1,9 +1,12 @@
 package elearning.dto.request;
 
 import elearning.constant.RegexConst;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class AdminUpdateReq {
@@ -15,16 +18,12 @@ public class AdminUpdateReq {
     @Pattern(regexp = RegexConst.PASSWORD, message = "Password must not contain spaces")
     private String password;
 
-    @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters long")
-    @Pattern(regexp = RegexConst.USERNAME, message = "Username must not contain special characters")
-    private String name;
-
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String createdDate;
+    @FutureOrPresent
+    private Date createdDate;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String updatedDate;
+    @FutureOrPresent
+    private Date updatedDate;
 }

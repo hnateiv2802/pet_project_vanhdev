@@ -4,6 +4,8 @@ import elearning.constant.RegexConst;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserCourseCreateReq {
     @NotNull(message = "Rating cannot be null")
@@ -17,8 +19,8 @@ public class UserCourseCreateReq {
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;
 
-    @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
-    private String createdDate;
+    @FutureOrPresent
+    private Date createdDate;
 
     @Positive(message = "UserID must be greater than zero")
     private int userID;

@@ -4,24 +4,34 @@ import elearning.dto.request.CourseCreateReq;
 import elearning.dto.request.CourseReadReq;
 import elearning.dto.request.CourseUpdateReq;
 import elearning.dto.response.CourseRes;
+import elearning.repository.CourseRepository;
 import elearning.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 @Service("CourseService")
 public class CourseServiceImpl implements CourseService {
+    private final CourseRepository courseRepository;
+
+    @Autowired
+    public CourseServiceImpl(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
+    }
+    // Create
     @Override
     public Object create(CourseCreateReq request) {
         request.setStatus("active");
-        Instant currentTimestamp = Instant.now();
-        String createdDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC).format(currentTimestamp);
-        request.setCreatedDate(createdDate);
+        request.setCreatedDate(Date.from(Instant.now()));
 
         return request;
     }
 
+    // Read
     @Override
     public Object read(String sort, int page, int size, CourseReadReq request) {
         CourseRes response = new CourseRes();
@@ -37,15 +47,15 @@ public class CourseServiceImpl implements CourseService {
         return response;
     }
 
+    // Update
     @Override
     public Object update(String courseID, CourseUpdateReq request) {
-        Instant currentTimestamp = Instant.now();
-        String updatedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC).format(currentTimestamp);
-        request.setUpdatedDate(updatedDate);
+        request.setUpdatedDate(Date.from(Instant.now()));
 
         return request;
     }
 
+    // Delete
     @Override
     public Object delete(String courseID) {
         return courseID;
