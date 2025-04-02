@@ -3,7 +3,7 @@ package elearning.dto.response;
 import lombok.Data;
 
 @Data
-public class AccountRes {
+public class UserRes {
     private String username;
     private String name;
     private String status;

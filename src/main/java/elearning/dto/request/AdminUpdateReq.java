@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class AccountUpdateReq {
+public class AdminUpdateReq {
     @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters long")
     @Pattern(regexp = RegexConst.USERNAME, message = "Username must not contain special characters")
     private String username;

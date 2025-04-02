@@ -6,16 +6,18 @@ import elearning.dto.request.CourseReadReq;
 import elearning.dto.request.CourseUpdateReq;
 import elearning.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("courseController")
+@RestController
 @RequestMapping("/api/v1")
 public class CourseController {
+    @Autowired
     private final CourseService courseService;
-@Autowired
-    public CourseController(CourseService courseService) {
+
+    public CourseController(@Qualifier("CourseService") CourseService courseService) {
         this.courseService = courseService;
     }
 

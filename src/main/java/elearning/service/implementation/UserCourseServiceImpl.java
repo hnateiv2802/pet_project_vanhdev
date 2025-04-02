@@ -1,20 +1,19 @@
 package elearning.service.implementation;
 
-import elearning.dto.request.AccountCourseLessonCreateReq;
-import elearning.dto.request.AccountCourseLessonReadReq;
-import elearning.dto.request.AccountCourseLessonUpdateReq;
-import elearning.dto.response.AccountCourseLessonRes;
-import elearning.service.AccountCourseLessonService;
+import elearning.dto.request.*;
+import elearning.dto.response.UserCourseRes;
+import elearning.service.UserCourseService;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-@Service("AccountCourseLessonService")
-public class AccountCourseLessonServiceImpl implements AccountCourseLessonService {
+
+@Service("UserCourseService")
+public class UserCourseServiceImpl implements UserCourseService {
     // Create
     @Override
-    public Object create(AccountCourseLessonCreateReq request) {
+    public Object create(UserCourseCreateReq request) {
         request.setStatus("stopped");
         Instant currentTimestamp = Instant.now();
         String createdDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC).format(currentTimestamp);
@@ -25,8 +24,10 @@ public class AccountCourseLessonServiceImpl implements AccountCourseLessonServic
 
     // Read
     @Override
-    public Object read(String sort, int page, int size, AccountCourseLessonReadReq request) {
-        AccountCourseLessonRes response = new AccountCourseLessonRes();
+    public Object read(String sort, int page, int size, UserCourseReadReq request) {
+        UserCourseRes response = new UserCourseRes();
+        response.setRating(request.getRating());
+        response.setReview(request.getReview());
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
         response.setSort(sort);
@@ -38,7 +39,7 @@ public class AccountCourseLessonServiceImpl implements AccountCourseLessonServic
 
     // Update
     @Override
-    public Object update(String lessonID, AccountCourseLessonUpdateReq request) {
+    public Object update(String courseID, UserCourseUpdateReq request) {
         Instant currentTimestamp = Instant.now();
         String updatedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneOffset.UTC).format(currentTimestamp);
         request.setUpdatedDate(updatedDate);
@@ -48,25 +49,31 @@ public class AccountCourseLessonServiceImpl implements AccountCourseLessonServic
 
     // Delete
     @Override
-    public Object delete(String lessonID) {
-        return lessonID;
+    public Object delete(String courseID) {
+        return courseID;
     }
 
-    // Start
+    // View
     @Override
-    public Object start(String lessonID) {
-        return lessonID;
+    public Object view(String courseID) {
+        return courseID;
     }
 
-    // Stop
+    // Join
     @Override
-    public Object stop(String lessonID) {
-        return lessonID;
+    public Object join(String courseID) {
+        return courseID;
     }
 
-    // Finish
+    // Rate
     @Override
-    public Object finish(String lessonID) {
-        return lessonID;
+    public Object rate(String courseID, UserCourseRateReq request) {
+        return request;
+    }
+
+    // Review
+    @Override
+    public Object review(String courseID, UserCourseReviewReq request) {
+        return request;
     }
 }

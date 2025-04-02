@@ -12,7 +12,6 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 @Service("CourseService")
 public class CourseServiceImpl implements CourseService {
-    // Create
     @Override
     public Object create(CourseCreateReq request) {
         request.setStatus("active");
@@ -23,7 +22,6 @@ public class CourseServiceImpl implements CourseService {
         return request;
     }
 
-    // Read
     @Override
     public Object read(String sort, int page, int size, CourseReadReq request) {
         CourseRes response = new CourseRes();
@@ -32,7 +30,6 @@ public class CourseServiceImpl implements CourseService {
         response.setTeacherName(request.getTeacherName());
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
-        response.setUpdatedDate(request.getUpdatedDate());
         response.setSort(sort);
         response.setPage(page);
         response.setSize(size);
@@ -40,7 +37,6 @@ public class CourseServiceImpl implements CourseService {
         return response;
     }
 
-    // Update
     @Override
     public Object update(String courseID, CourseUpdateReq request) {
         Instant currentTimestamp = Instant.now();
@@ -50,7 +46,6 @@ public class CourseServiceImpl implements CourseService {
         return request;
     }
 
-    // Delete
     @Override
     public Object delete(String courseID) {
         return courseID;

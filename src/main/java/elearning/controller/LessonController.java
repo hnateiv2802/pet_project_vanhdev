@@ -6,6 +6,7 @@ import elearning.dto.request.LessonReadReq;
 import elearning.dto.request.LessonUpdateReq;
 import elearning.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1")
 public class LessonController {
-    private final LessonService lessonService;
     @Autowired
-    public LessonController(LessonService lessonService) {
+    private final LessonService lessonService;
+
+    public LessonController(@Qualifier("LessonService") LessonService lessonService) {
         this.lessonService = lessonService;
     }
 

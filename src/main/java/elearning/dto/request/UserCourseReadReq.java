@@ -2,12 +2,13 @@ package elearning.dto.request;
 
 import elearning.constant.RegexConst;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class AccountCourseUpdateReq {
+public class UserCourseReadReq {
     @PositiveOrZero(message = "Rating must be greater than zero")
     private double rating;
 
@@ -22,4 +23,10 @@ public class AccountCourseUpdateReq {
 
     @Pattern(regexp = RegexConst.DATETIME, message = "Timestamp must be yyyy-mm-dd hh:mm:ss")
     private String updatedDate;
+
+    @Positive(message = "UserID must be greater than zero")
+    private int userID;
+
+    @Positive(message = "CourseID must be greater than zero")
+    private int courseID;
 }

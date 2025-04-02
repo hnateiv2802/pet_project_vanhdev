@@ -6,17 +6,18 @@ import elearning.dto.request.ChapterReadReq;
 import elearning.dto.request.ChapterUpdateReq;
 import elearning.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("chapterController")
 @RequestMapping("/api/v1")
 public class ChapterController {
-    // Init
+@Autowired
     private final ChapterService chapterService;
-    @Autowired
-    public ChapterController(ChapterService chapterService) {
+
+    public ChapterController(@Qualifier("ChapterService")ChapterService chapterService) {
         this.chapterService = chapterService;
     }
 
