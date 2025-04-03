@@ -20,7 +20,7 @@ public class UserUpdateReq {
 
     @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters long")
     @Pattern(regexp = RegexConst.USERNAME, message = "Username must not contain special characters")
-    private String name;
+    private String nickname;
 
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;

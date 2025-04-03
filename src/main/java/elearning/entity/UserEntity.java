@@ -19,7 +19,7 @@ public class UserEntity {
     private String password;
 
     @Column(name="name")
-    private String name;
+    private String nickname;
 
     @Column(name="status")
     private String status;

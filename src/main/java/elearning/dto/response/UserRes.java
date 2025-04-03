@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class UserRes {
     private String username;
-    private String name;
+    private String nickname;
     private String status;
     private Date createdDate;
     private Date updatedDate;

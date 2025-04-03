@@ -47,5 +47,7 @@ public class URLConst {
     public static final String STOP_LESSON                  = "/user/stop/{lesson_id}";
     public static final String FINISH_LESSON                = "/user/finish/{lesson_id}";
 
+    //test JPA
+//    public static final String ACTIVE                = "ACTIVE";
     private URLConst() {}
 }

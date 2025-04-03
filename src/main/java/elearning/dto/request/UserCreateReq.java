@@ -24,7 +24,7 @@ public class UserCreateReq {
     @NotNull(message = "Name cannot be null")
     @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters long")
     @Pattern(regexp = RegexConst.NAME, message = "Name must not contain special characters")
-    private String name;
+    private String nickname;
 
     @Pattern(regexp = RegexConst.STATUS, message = "Status must be either 'active' or 'inactive'")
     private String status;

@@ -1,11 +1,13 @@
 package elearning.service.implementation;
 
+import elearning.constant.URLConst;
 import elearning.dto.request.UserCreateReq;
 import elearning.dto.request.UserLoginReq;
 import elearning.dto.request.UserReadReq;
 import elearning.dto.request.UserUpdateReq;
 import elearning.dto.response.UserRes;
 import elearning.entity.UserEntity;
+import elearning.exception.GlobalExceptionHandler;
 import elearning.repository.UserRepository;
 import elearning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,16 @@ public class UserServiceImpl implements UserService {
     // Login
     @Override
     public Object login(UserLoginReq request) {
+        UserEntity user = userRepository.findByUsername(request.getUsername());
+        if (user == null) {
+            return "account is not exist";
+        }
+        if (!user.getPassword().equals(request.getPassword())) {
+            return "wrong password";
+        }
+        // create response:
+
+
         return request;
     }
 
@@ -46,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(request.getUsername());
-        userEntity.setName(request.getName());
+        userEntity.setNickname(request.getNickname());
         userEntity.setStatus(request.getStatus());
         userEntity.setCreatedDate(request.getCreatedDate());
 
@@ -61,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
         UserRes response = new UserRes();
         response.setUsername(request.getUsername());
-        response.setName(request.getName());
+        response.setNickname(request.getNickname());
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
         response.setSort(sort);
@@ -84,4 +96,18 @@ public class UserServiceImpl implements UserService {
     public Object delete(String userID) {
         return userID;
     }
+
+
+    //test JPA -create user
+    public Object createTest(UserCreateReq request) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(request.getUsername());
+        userEntity.setNickname(request.getNickname());
+        userEntity.setStatus(URLConst.ACTIVE);
+        userEntity.setCreatedDate(new Date());
+        userEntity.setUpdatedDate(new Date());
+        userEntity = userRepository.save(userEntity);
+        return userEntity;
+    }
+
 }
