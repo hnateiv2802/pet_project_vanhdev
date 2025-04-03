@@ -31,13 +31,13 @@ public class UserServiceImpl implements UserService {
     // Login
     @Override
     public Object login(UserLoginReq request) {
-        UserEntity user = userRepository.findByUsername(request.getUsername());
-        if (user == null) {
-            return "account is not exist";
-        }
-        if (!user.getPassword().equals(request.getPassword())) {
-            return "wrong password";
-        }
+//        UserEntity user = userRepository.findByUsername(request.getUsername());
+//        if (user == null) {
+//            return "account is not exist";
+//        }
+//        if (!user.getPassword().equals(request.getPassword())) {
+//            return "wrong password";
+//        }
         // create response:
 
 
@@ -99,15 +99,15 @@ public class UserServiceImpl implements UserService {
 
 
     //test JPA -create user
-    public Object createTest(UserCreateReq request) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(request.getUsername());
-        userEntity.setNickname(request.getNickname());
-        userEntity.setStatus(URLConst.ACTIVE);
-        userEntity.setCreatedDate(new Date());
-        userEntity.setUpdatedDate(new Date());
-        userEntity = userRepository.save(userEntity);
-        return userEntity;
-    }
+//    public Object createTest(UserCreateReq request) {
+//        UserEntity userEntity = new UserEntity();
+//        userEntity.setUsername(request.getUsername());
+//        userEntity.setNickname(request.getNickname());
+//        userEntity.setStatus(URLConst.ACTIVE);
+//        userEntity.setCreatedDate(new Date());
+//        userEntity.setUpdatedDate(new Date());
+//        userEntity = userRepository.save(userEntity);
+//        return userEntity;
+//    }
 
 }
