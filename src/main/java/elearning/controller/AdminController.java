@@ -25,7 +25,7 @@ public class AdminController {
     // Login
     @PostMapping(URLConst.LOGIN_ADMIN)
     public ResponseEntity<?> login(@Validated @RequestBody AdminLoginReq request) {
-        Object res = adminService.login(request);
+        Object response = adminService.login(request);
         String message = "Login successful";
         return ResponseEntity.ok(message);
     }
@@ -33,7 +33,7 @@ public class AdminController {
     // Logout
     @PostMapping(URLConst.LOGOUT_ADMIN)
     public ResponseEntity<?> logout(@Validated @PathVariable("id") int id) {
-        Object res = adminService.logout(id);
+        Object response = adminService.logout(id);
         String message = "Logout successful";
         return ResponseEntity.ok(message);
     }
@@ -41,8 +41,8 @@ public class AdminController {
     // Create
     @PostMapping(URLConst.CREATE_ADMIN)
     public ResponseEntity<?> createAdmin(@Validated @RequestBody AdminCreateReq request) {
-        Object res = adminService.create(request);
-        return ResponseEntity.ok(res);
+        Object response = adminService.create(request);
+        return ResponseEntity.ok(response);
     }
 
     // Read
@@ -54,8 +54,8 @@ public class AdminController {
             @RequestParam("size") int size,
             @RequestBody AdminReadReq request
     ) {
-        Object res = adminService.read(sort, page, size, request);
-        return ResponseEntity.ok(res);
+        Object response = adminService.read(sort, page, size, request);
+        return ResponseEntity.ok(response);
     }
 
     // Update
@@ -65,14 +65,14 @@ public class AdminController {
             @PathVariable("id") int id,
             @RequestBody AdminUpdateReq request
     ) {
-        Object res = adminService.update(id, request);
-        return ResponseEntity.ok(res);
+        Object response = adminService.update(id, request);
+        return ResponseEntity.ok(response);
     }
 
     // Delete
     @DeleteMapping(URLConst.DELETE_ADMIN)
     public ResponseEntity<?> deleteAdmin(@Validated @PathVariable("id") int id) {
-        Object res =  adminService.delete(id);
-        return ResponseEntity.ok(res);
+        Object response =  adminService.delete(id);
+        return ResponseEntity.ok(response);
     }
 }

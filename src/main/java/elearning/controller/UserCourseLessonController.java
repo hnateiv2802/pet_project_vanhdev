@@ -24,52 +24,52 @@ public class UserCourseLessonController {
     @PostMapping(URLConst.CREATE_USER_COURSE_LESSON)
     public ResponseEntity<?> createUserCourseLesson(
             @Validated
-            @PathVariable("userID") int userID,
-            @PathVariable("courseID") int courseID,
+            @PathVariable("userId") int userId,
+            @PathVariable("courseId") int courseId,
             @RequestBody UserCourseLessonCreateReq request
     ) {
-        Object res = userCourseLessonService.create(userID, courseID, request);
-        return ResponseEntity.ok(res);
+        Object response = userCourseLessonService.create(userId, courseId, request);
+        return ResponseEntity.ok(response);
     }
 
     // Read
     @PostMapping(URLConst.READ_USER_COURSE_LESSON)
     public ResponseEntity<?> readUserCourseLesson(
             @Validated
-            @PathVariable("userID") int userID,
-            @PathVariable("courseID") int courseID,
+            @PathVariable("userId") int userId,
+            @PathVariable("courseId") int courseId,
             @RequestParam("sort") String sort,
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestBody UserCourseLessonReadReq request
     ) {
-        Object res = userCourseLessonService.read(userID, courseID, sort, page, size, request);
-        return ResponseEntity.ok(res);
+        Object response = userCourseLessonService.read(userId, courseId, sort, page, size, request);
+        return ResponseEntity.ok(response);
     }
 
     // Update
     @PutMapping(URLConst.UPDATE_USER_COURSE_LESSON)
     public ResponseEntity<?> updateUserCourseLesson(
             @Validated
-            @PathVariable("userID") int userID,
-            @PathVariable("courseID") int courseID,
-            @PathVariable("lessonID") int lessonID,
+            @PathVariable("userId") int userId,
+            @PathVariable("courseId") int courseId,
+            @PathVariable("lessonId") int lessonId,
             @RequestBody UserCourseLessonUpdateReq request
     ) {
-        Object res = userCourseLessonService.update(userID, courseID, lessonID, request);
-        return ResponseEntity.ok(res);
+        Object response = userCourseLessonService.update(userId, courseId, lessonId, request);
+        return ResponseEntity.ok(response);
     }
 
     // Delete
     @DeleteMapping(URLConst.DELETE_USER_COURSE_LESSON)
     public ResponseEntity<?> deleteUserCourseLesson(
             @Validated
-            @PathVariable("userID") int userID,
-            @PathVariable("courseID") int courseID,
-            @PathVariable("lessonID") int lessonID
+            @PathVariable("userId") int userId,
+            @PathVariable("courseId") int courseId,
+            @PathVariable("lessonId") int lessonId
     ) {
-        Object res = userCourseLessonService.delete(userID, courseID, lessonID);
-        return ResponseEntity.ok(res);
+        Object response = userCourseLessonService.delete(userId, courseId, lessonId);
+        return ResponseEntity.ok(response);
     }
 
 }

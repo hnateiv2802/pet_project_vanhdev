@@ -1,10 +1,7 @@
 package elearning.dto.request;
 
 import elearning.constant.RegexConst;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -13,11 +10,7 @@ import java.util.Date;
 public class CourseCreateReq {
     @NotNull(message = "Course Name cannot be null")
     @Size(min = 1, max = 20, message = "Course Name must be between 1 and 20 characters long")
-    private String courseName;
-
-    @NotNull(message = "Name cannot be null")
-    @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters long")
-    private String teacherName;
+    private String name;
 
     @Size(min = 0, max = 200, message = "Description must be less than 200 characters long")
     private String description;
@@ -27,4 +20,7 @@ public class CourseCreateReq {
 
     @FutureOrPresent
     private Date createdDate;
+
+    @Positive(message = "courseId must be greater than zero")
+    private int courseId;
 }

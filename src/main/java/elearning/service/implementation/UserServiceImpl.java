@@ -31,13 +31,19 @@ public class UserServiceImpl implements UserService {
     // Login
     @Override
     public Object login(UserLoginReq request) {
+        UserEntity user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        //check password:
+        if(!user.getPassword().equals(request.getPassword())) {
+            throw new RuntimeException("Wrong password");
+        }
         return request;
     }
 
     // Logout
     @Override
-    public Object logout(int userID) {
-        return userID;
+    public Object logout(int id) {
+        return id;
     }
 
     // Create
@@ -76,17 +82,18 @@ public class UserServiceImpl implements UserService {
 
     // Update
     @Override
-    public Object update(int userID, UserUpdateReq request) {
+    public Object update(int id, UserUpdateReq request) {
         Date currentTime = Date.from(Instant.now());
         request.setUpdatedDate(currentTime);
 
-        UserEntity user = userRepository.findById(userID)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng với ID: " + userID));
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng với ID: " + id));
 
 
         if (request.getName() != null) {
             user.setName(request.getName());
         }
+
         if (request.getPassword() != null) {
             user.setPassword(request.getPassword());
         }
@@ -95,7 +102,13 @@ public class UserServiceImpl implements UserService {
             user.setStatus(request.getStatus());
         }
 
-        user.setUpdatedDate(currentTime);
+        if (request.getCreatedDate() != null) {
+            user.setCreatedDate(request.getCreatedDate());
+        }
+
+        if (request.getUpdatedDate() != null) {
+            user.setUpdatedDate(request.getUpdatedDate());
+        }
 
         userRepository.save(user);
 
@@ -104,8 +117,12 @@ public class UserServiceImpl implements UserService {
 
     // Delete
     @Override
-    public Object delete(int userID) {
-        return userID;
+    public Object delete(int id) {
+        UserEntity existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+        existingUser.setStatus("inactive");
+        userRepository.save(existingUser);
+
+        return id;
     }
 
 }
