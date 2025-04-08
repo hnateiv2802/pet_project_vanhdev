@@ -7,4 +7,5 @@ SPRING BOOT - MAVEN
 - Dependencies: Spring Web, Lombok, mySQL.
 
 TODO
-Make response DTOs for each requests
+1. Make response DTOs for each requests
+2. Throw Errors when ID not found when Update or Delete
