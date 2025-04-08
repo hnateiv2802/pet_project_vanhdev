@@ -31,22 +31,12 @@ public class UserServiceImpl implements UserService {
     // Login
     @Override
     public Object login(UserLoginReq request) {
-//        UserEntity user = userRepository.findByUsername(request.getUsername());
-//        if (user == null) {
-//            return "account is not exist";
-//        }
-//        if (!user.getPassword().equals(request.getPassword())) {
-//            return "wrong password";
-//        }
-        // create response:
-
-
         return request;
     }
 
     // Logout
     @Override
-    public Object logout(String userID) {
+    public Object logout(int userID) {
         return userID;
     }
 
@@ -56,13 +46,14 @@ public class UserServiceImpl implements UserService {
         request.setStatus("active");
         request.setCreatedDate(Date.from(Instant.now()));
 
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(request.getUsername());
-        userEntity.setNickname(request.getNickname());
-        userEntity.setStatus(request.getStatus());
-        userEntity.setCreatedDate(request.getCreatedDate());
-
-        userRepository.save(userEntity);
+        UserEntity newUser = new UserEntity();
+        newUser.setUsername(request.getUsername());
+        newUser.setPassword(request.getPassword());
+        newUser.setName(request.getName());
+        newUser.setStatus(request.getStatus());
+        newUser.setCreatedDate(request.getCreatedDate());
+        newUser.setAge(request.getAge());
+        userRepository.save(newUser);
 
         return request;
     }
@@ -73,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
         UserRes response = new UserRes();
         response.setUsername(request.getUsername());
-        response.setNickname(request.getNickname());
+        response.setName(request.getName());
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
         response.setSort(sort);
@@ -85,29 +76,36 @@ public class UserServiceImpl implements UserService {
 
     // Update
     @Override
-    public Object update(String userID, UserUpdateReq request) {
-        request.setUpdatedDate(Date.from(Instant.now()));
+    public Object update(int userID, UserUpdateReq request) {
+        Date currentTime = Date.from(Instant.now());
+        request.setUpdatedDate(currentTime);
+
+        UserEntity user = userRepository.findById(userID)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng với ID: " + userID));
+
+
+        if (request.getName() != null) {
+            user.setName(request.getName());
+        }
+        if (request.getPassword() != null) {
+            user.setPassword(request.getPassword());
+        }
+
+        if (request.getStatus() != null) {
+            user.setStatus(request.getStatus());
+        }
+
+        user.setUpdatedDate(currentTime);
+
+        userRepository.save(user);
 
         return request;
     }
 
     // Delete
     @Override
-    public Object delete(String userID) {
+    public Object delete(int userID) {
         return userID;
     }
-
-
-    //test JPA -create user
-//    public Object createTest(UserCreateReq request) {
-//        UserEntity userEntity = new UserEntity();
-//        userEntity.setUsername(request.getUsername());
-//        userEntity.setNickname(request.getNickname());
-//        userEntity.setStatus(URLConst.ACTIVE);
-//        userEntity.setCreatedDate(new Date());
-//        userEntity.setUpdatedDate(new Date());
-//        userEntity = userRepository.save(userEntity);
-//        return userEntity;
-//    }
 
 }

@@ -2,52 +2,50 @@ package elearning.constant;
 
 public class URLConst {
     public static final String LOGIN_ADMIN  = "/admin/login";
-    public static final String LOGOUT_ADMIN = "/admin/logout/{admin_id}";
+    public static final String LOGOUT_ADMIN = "/admin/logout/{id}";
     public static final String CREATE_ADMIN = "/admin/create";
     public static final String READ_ADMIN   = "/admin/read";
-    public static final String UPDATE_ADMIN = "/admin/update/{admin_id}";
-    public static final String DELETE_ADMIN = "/admin/delete/{admin_id}";
+    public static final String UPDATE_ADMIN = "/admin/update/{id}";
+    public static final String DELETE_ADMIN = "/admin/delete/{id}";
 
-    public static final String LOGIN_USER   = "/user/login";
-    public static final String LOGOUT_USER  = "/user/logout/{user_id}";
-    public static final String CREATE_USER  = "/user/create";
-    public static final String READ_USER    = "/user/read";
-    public static final String UPDATE_USER  = "/user/update/{user_id}";
-    public static final String DELETE_USER  = "/user/delete/{user_id}";
+    public static final String LOGIN_USER  = "/users/login";
+    public static final String LOGOUT_USER = "/users/logout/{id}";
+    public static final String CREATE_USER = "/users/create";
+    public static final String READ_USER   = "/users/read";
+    public static final String UPDATE_USER = "/users/update/{id}";
+    public static final String DELETE_USER = "/users/delete/{id}";
 
-    public static final String CREATE_COURSE = "/course/create";
-    public static final String READ_COURSE   = "/course/read";
-    public static final String UPDATE_COURSE = "/course/update/{course_id}";
-    public static final String DELETE_COURSE = "/course/delete/{course_id}";
+    public static final String CREATE_COURSE = "/courses/create";
+    public static final String READ_COURSE   = "/courses/read";
+    public static final String UPDATE_COURSE = "/courses/update/{id}";
+    public static final String DELETE_COURSE = "/courses/delete/{id}";
 
-    public static final String CREATE_CHAPTER = "/chapter/create";
-    public static final String READ_CHAPTER   = "/chapter/read";
-    public static final String UPDATE_CHAPTER = "/chapter/update/{chapter_id}";
-    public static final String DELETE_CHAPTER = "/chapter/delete/{chapter_id}";
+    public static final String CREATE_CHAPTER = "/chapters/create";
+    public static final String READ_CHAPTER   = "/chapters/read";
+    public static final String UPDATE_CHAPTER = "/chapters/update/{id}";
+    public static final String DELETE_CHAPTER = "/chapters/delete/{id}";
 
-    public static final String CREATE_LESSON = "/lesson/create";
-    public static final String READ_LESSON   = "/lesson/read";
-    public static final String UPDATE_LESSON = "/lesson/update/{lesson_id}";
-    public static final String DELETE_LESSON = "/lesson/delete/{lesson_id}";
+    public static final String CREATE_LESSON = "/lessons/create";
+    public static final String READ_LESSON   = "/lessons/read";
+    public static final String UPDATE_LESSON = "/lessons/update/{id}";
+    public static final String DELETE_LESSON = "/lessons/delete/{id}";
 
-    public static final String CREATE_USER_COURSE = "/user/create_user_course";
-    public static final String READ_USER_COURSE   = "/user/read_user_course";
-    public static final String UPDATE_USER_COURSE = "/user/update_user_course/{course_id}";
-    public static final String DELETE_USER_COURSE = "/user/delete_user_course/{course_id}";
-    public static final String VIEW_COURSE           = "/user/view/{course_id}";
-    public static final String JOIN_COURSE           = "/user/join/{course_id}";
-    public static final String RATE_COURSE           = "/user/rate/{course_id}";
-    public static final String REVIEW_COURSE         = "/user/review/{course_id}";
+    public static final String CREATE_USER_COURSE = "/users/{userID}/courses/create";
+    public static final String READ_USER_COURSE   = "/users/{userID}/courses/read";
+    public static final String UPDATE_USER_COURSE = "/users/{userID}/courses/update/{courseID}";
+    public static final String DELETE_USER_COURSE = "/users/{userID}/courses/delete/{courseID}";
+    public static final String VIEW_COURSE        = "/users/{userID}/courses/view/{courseID}";
+    public static final String JOIN_COURSE        = "/users/{userID}/courses/join/{courseID}";
+    public static final String RATE_COURSE        = "/users/{userID}/courses/rate/{courseID}";
+    public static final String REVIEW_COURSE      = "/users/{userID}/courses/review/{courseID}";
 
-    public static final String CREATE_USER_COURSE_LESSON = "/user/create_user_course_lesson";
-    public static final String READ_USER_COURSE_LESSON   = "/user/read_user_course_lesson";
-    public static final String UPDATE_USER_COURSE_LESSON = "/user/update_user_course_lesson/{lesson_id}";
-    public static final String DELETE_USER_COURSE_LESSON = "/user/delete_user_course_lesson/{lesson_id}";
-    public static final String START_LESSON                 = "/user/start/{lesson_id}";
-    public static final String STOP_LESSON                  = "/user/stop/{lesson_id}";
-    public static final String FINISH_LESSON                = "/user/finish/{lesson_id}";
+    public static final String CREATE_USER_COURSE_LESSON = "/users/{userID}/courses/{courseID}/lesson/create";
+    public static final String READ_USER_COURSE_LESSON   = "/users/{userID}/courses/{courseID}/lesson/read";
+    public static final String UPDATE_USER_COURSE_LESSON = "/users/{userID}/courses/{courseID}/lesson/update/{lessonID}";
+    public static final String DELETE_USER_COURSE_LESSON = "/users/{userID}/courses/{courseID}/lesson/delete/{lessonID}";
+    public static final String START_LESSON              = "/users/{userID}/courses/{courseID}/lesson/start/{lessonID}";
+    public static final String STOP_LESSON               = "/users/{userID}/courses/{courseID}/lesson/stop/{lessonID}";
+    public static final String FINISH_LESSON             = "/users/{userID}/courses/{courseID}/lesson/finish/{lessonID}";
 
-    //test JPA
-//    public static final String ACTIVE                = "ACTIVE";
     private URLConst() {}
 }

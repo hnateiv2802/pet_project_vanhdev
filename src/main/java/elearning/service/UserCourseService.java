@@ -4,14 +4,14 @@ import elearning.dto.request.*;
 
 public interface UserCourseService {
     // Create
-    public Object create(UserCourseCreateReq request);
+    public Object create(int userID, UserCourseCreateReq request);
 
     // Read
-    public Object read(String sort, int page, int size, UserCourseReadReq request);
+    public Object read(int userID, String sort, int page, int size, UserCourseReadReq request);
 
     // Update
-    public Object update(String courseID, UserCourseUpdateReq request);
+    public Object update(int userID, int courseID, UserCourseUpdateReq request);
 
     // Delete
-    public Object delete(String courseID);
+    public Object delete(int userID, int courseID);
 }

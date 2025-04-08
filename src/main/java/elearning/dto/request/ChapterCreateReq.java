@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 public class ChapterCreateReq {
     @NotNull(message = "Chapter Name cannot be null")
-    @Size(min = 1, max = 20, message = "Chapter Name must be between 1 and 20 characters long")
+    @Size(min = 1, max = 50, message = "Chapter Name must be between 1 and 20 characters long")
     private String chapterName;
 
     @Size(min = 0, max = 200, message = "Description must be less than 200 characters long")

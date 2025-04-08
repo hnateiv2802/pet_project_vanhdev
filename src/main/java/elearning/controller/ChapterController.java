@@ -29,7 +29,7 @@ public class ChapterController {
     }
 
     // Read
-    @GetMapping(URLConst.READ_CHAPTER)
+    @PostMapping(URLConst.READ_CHAPTER)
     public ResponseEntity<?> readChapter(
             @Validated
             @RequestParam("sort") String sort,
@@ -44,7 +44,7 @@ public class ChapterController {
     @PutMapping(URLConst.UPDATE_CHAPTER)
     public ResponseEntity<?> updateChapter(
             @Validated
-            @PathVariable("chapter_id") String chapterID,
+            @PathVariable("chapter_id") int chapterID,
             @RequestBody ChapterUpdateReq request) {
         Object res = chapterService.update(chapterID, request);
         return ResponseEntity.ok(res);
@@ -52,7 +52,7 @@ public class ChapterController {
 
     // Delete
     @DeleteMapping(URLConst.DELETE_CHAPTER)
-    public ResponseEntity<?> deleteChapter(@Validated @PathVariable("chapter_id") String chapterID) {
+    public ResponseEntity<?> deleteChapter(@Validated @PathVariable("chapter_id") int chapterID) {
         Object res = chapterService.delete(chapterID);
         return ResponseEntity.ok(res);
     }

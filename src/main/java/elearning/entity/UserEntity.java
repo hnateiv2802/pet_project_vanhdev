@@ -5,8 +5,8 @@ import lombok.Data;
 
 import java.util.Date;
 @Data
-@Entity(name="userEntity")
-@Table(name="userEntity")
+@Entity(name="user")
+@Table(name="user", schema = "elearn")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,10 @@ public class UserEntity {
     private String password;
 
     @Column(name="name")
-    private String nickname;
+    private String name;
+
+    @Column(name ="age")
+    private int age;
 
     @Column(name="status")
     private String status;

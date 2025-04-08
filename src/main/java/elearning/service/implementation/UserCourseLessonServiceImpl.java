@@ -23,38 +23,39 @@ public class UserCourseLessonServiceImpl implements UserCourseLessonService {
         this.userCourseLessonRepository = userCourseLessonRepository;
     }
 
-    //create
+    // Create
     @Override
-    public Object create(UserCourseLessonCreateReq request) {
+    public Object create(int userID, int courseID, UserCourseLessonCreateReq request) {
         request.setStatus("stopped");
         request.setCreatedDate(Date.from(Instant.now()));
 
         return request;
     }
 
-    //read
+    // Read
     @Override
-    public Object read(String sort, int page, int size, UserCourseLessonReadReq request) {
+    public Object read(int userID, int courseID, String sort, int page, int size, UserCourseLessonReadReq request) {
         UserCourseLessonRes response = new UserCourseLessonRes();
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
         response.setSort(sort);
         response.setPage(page);
         response.setSize(size);
+
         return response;
     }
 
-    //update
+    // Update
     @Override
-    public Object update(String lessonID, UserCourseLessonUpdateReq request) {
+    public Object update(int userID, int courseID, int lessonID, UserCourseLessonUpdateReq request) {
         request.setUpdatedDate(Date.from(Instant.now()));
 
         return request;
     }
 
-    //delete
+    // Delete
     @Override
-    public Object delete(String lessonID) {
+    public Object delete(int userID, int courseID, int lessonID) {
         return lessonID;
     }
 }
