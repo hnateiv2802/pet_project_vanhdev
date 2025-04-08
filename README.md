@@ -1,6 +1,6 @@
-4. **Connect**:
- 
- # TODO
- 1. Make response DTOs for each requests
- 2. Make Update and Delete API for rate and review
- 1. Make response DTOs for each requests
+SPRING BOOT - MAVEN:
+Spring 3.4.4
+Java version 17
+Dependencies: Spring Web, Lombok, mySQL
+TODO:
+Make response DTOs for each requests
