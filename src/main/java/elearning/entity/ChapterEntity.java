@@ -1,8 +1,11 @@
 package elearning.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 
 import java.util.Date;
+@Data
 @Entity(name="chapterEntity")
 @Table(name="chapterEntity")
 public class ChapterEntity {

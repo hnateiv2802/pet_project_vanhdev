@@ -2,9 +2,11 @@ package elearning.entity;
 
 import elearning.entity.key.UserCourseKey;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+@Data
 @Entity(name="UserCourseEnity")
 @Table(name="UserCourseEnity")
 @IdClass(UserCourseKey.class)

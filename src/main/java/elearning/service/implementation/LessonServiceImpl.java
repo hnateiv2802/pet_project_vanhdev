@@ -21,6 +21,7 @@ public class LessonServiceImpl implements LessonService {
     public LessonServiceImpl(LessonRepository lessonRepository) {
         this.lessonRepository = lessonRepository;
     }
+
     // Create
     @Override
     public Object create(LessonCreateReq request) {
@@ -49,7 +50,7 @@ public class LessonServiceImpl implements LessonService {
 
     // Update
     @Override
-    public Object update(int lessonID, LessonUpdateReq request) {
+    public Object update(int lessonId, LessonUpdateReq request) {
         request.setUpdatedDate(Date.from(Instant.now()));
 
         return request;
@@ -57,7 +58,7 @@ public class LessonServiceImpl implements LessonService {
 
     // Delete
     @Override
-    public Object delete(int lessonID) {
-        return lessonID;
+    public Object delete(int lessonId) {
+        return lessonId;
     }
 }

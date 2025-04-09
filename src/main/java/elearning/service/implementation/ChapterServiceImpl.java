@@ -49,7 +49,7 @@ public class ChapterServiceImpl implements ChapterService {
 
     // Update
     @Override
-    public Object update(int chapterID, ChapterUpdateReq request) {
+    public Object update(int chapterId, ChapterUpdateReq request) {
         request.setUpdatedDate(Date.from(Instant.now()));
 
         return request;
@@ -57,7 +57,7 @@ public class ChapterServiceImpl implements ChapterService {
 
     // Delete
     @Override
-    public Object delete(int chapterID) {
-        return chapterID;
+    public Object delete(int chapterId) {
+        return chapterId;
     }
 }

@@ -23,7 +23,6 @@ import java.util.Date;
 public class UserServiceImpl implements UserService {
     @Autowired
     private final UserRepository userRepository;
-
     public UserServiceImpl(@Qualifier("UserRepository") UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -37,13 +36,14 @@ public class UserServiceImpl implements UserService {
         if(!user.getPassword().equals(request.getPassword())) {
             throw new RuntimeException("Wrong password");
         }
-        return request;
+        return "Login successful";
     }
 
     // Logout
     @Override
     public Object logout(int id) {
-        return id;
+        String response = String.format("Logout successful [%d]", id);
+        return String.format("Logout successful [%d]", id);
     }
 
     // Create
@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
 
-        return request;
+        return user;
     }
 
     // Delete
@@ -122,7 +122,6 @@ public class UserServiceImpl implements UserService {
         existingUser.setStatus("inactive");
         userRepository.save(existingUser);
 
-        return id;
+        return existingUser;
     }
-
 }
