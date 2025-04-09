@@ -4,20 +4,20 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UserCourseLessonKey implements Serializable {
-    private int ucUserID;
+    private int ucUserId;
 
-    private int ucCourseID;
+    private int ucCourseId;
 
-    private int lessonID;
+    private int lessonId;
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof UserCourseLessonKey that)) return false;
-        return ucUserID == that.ucUserID && ucCourseID == that.ucCourseID && lessonID == that.lessonID;
+        return ucUserId == that.ucUserId && ucCourseId == that.ucCourseId && lessonId == that.lessonId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ucUserID, ucCourseID, lessonID);
+        return Objects.hash(ucUserId, ucCourseId, lessonId);
     }
 }

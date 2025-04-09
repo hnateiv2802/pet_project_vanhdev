@@ -35,9 +35,9 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Object read(String sort, int page, int size, CourseReadReq request) {
         CourseRes response = new CourseRes();
-        response.setCourseName(request.getCourseName());
+        response.setCourseName(request.getName());
         response.setDescription(request.getDescription());
-        response.setTeacherName(request.getTeacherName());
+        response.setTeacherName(request.getName());
         response.setStatus(request.getStatus());
         response.setCreatedDate(request.getCreatedDate());
         response.setSort(sort);

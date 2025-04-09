@@ -35,7 +35,7 @@ public class ChapterServiceImpl implements ChapterService {
     @Override
     public Object read(String sort, int page, int size, ChapterReadReq request) {
         ChapterRes response = new ChapterRes();
-        response.setChapterName(request.getChapterName());
+        response.setChapterName(request.getName());
         response.setDescription(request.getDescription());
         response.setChapterOrder(request.getChapterOrder());
         response.setStatus(request.getStatus());

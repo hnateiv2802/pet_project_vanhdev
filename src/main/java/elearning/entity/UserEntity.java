@@ -21,9 +21,6 @@ public class UserEntity {
     @Column(name="name")
     private String name;
 
-    @Column(name ="age")
-    private int age;
-
     @Column(name="status")
     private String status;
 
@@ -32,4 +29,7 @@ public class UserEntity {
 
     @Column(name="updatedDate")
     private Date updatedDate;
+
+    @Column(name="age")
+    private int age;
 }

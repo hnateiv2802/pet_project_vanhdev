@@ -8,9 +8,9 @@ import java.util.Date;
 
 @Data
 public class UserUpdateReq {
-    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters long")
-    @Pattern(regexp = RegexConst.USERNAME, message = "Username must not contain special characters")
-    private String username;
+//    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters long")
+//    @Pattern(regexp = RegexConst.USERNAME, message = "Username must not contain special characters")
+//    private String username;
 
     @Size(min = 8, max = 64, message = "Password must be between 8 and 64 characters long")
     @Pattern(regexp = RegexConst.PASSWORD, message = "Password must not contain spaces")

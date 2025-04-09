@@ -10,10 +10,10 @@ import java.util.Date;
 @IdClass(UserCourseKey.class)
 public class UserCourseEntity implements Serializable {
     @Id
-    private int userID;
+    private int userId;
 
     @Id
-    private int courseID;
+    private int courseId;
 
     @Column(name="rating")
     private double rating;

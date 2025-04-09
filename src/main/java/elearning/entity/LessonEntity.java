@@ -13,8 +13,8 @@ public class LessonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="lessonName")
-    private String lessonName;
+    @Column(name="name")
+    private String name;
 
     @Column(name="description")
     private String description;
@@ -25,8 +25,8 @@ public class LessonEntity {
     @Column(name="url")
     private String url;
 
-    @Column(name="order")
-    private int order;
+    @Column(name="lessonOrder")
+    private int lessonOrder;
 
     @Column(name="status")
     private String status;
@@ -37,6 +37,6 @@ public class LessonEntity {
     @Column(name="updatedDate")
     private Date updatedDate;
 
-    @Column(name="chapterID")
-    private int chapterID;
+    @Column(name="chapterId")
+    private int chapterId;
 }

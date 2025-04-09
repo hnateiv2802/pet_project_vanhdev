@@ -13,11 +13,8 @@ public class CourseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="courseName")
-    private String courseName;
-
-    @Column(name="teacherName")
-    private String teacherName;
+    @Column(name="name")
+    private String name;
 
     @Column(name="description")
     private String description;
@@ -30,4 +27,7 @@ public class CourseEntity implements Serializable {
 
     @Column(name="updatedDate")
     private Date updatedDate;
+
+    @Column(name="teacherId")
+    private int teacherId;
 }

@@ -14,13 +14,13 @@ import java.util.Date;
 
 public class UserCourseLessonEntity {
     @Id
-    private int ucUserID;
+    private int ucUserId;
 
     @Id
-    private int ucCourseID;
+    private int ucCourseId;
 
     @Id
-    private int lessonID;
+    private int lessonId;
 
     @Column(name="status")
     private String status;

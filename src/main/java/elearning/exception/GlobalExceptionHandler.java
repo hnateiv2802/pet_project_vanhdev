@@ -15,10 +15,20 @@ public class GlobalExceptionHandler extends Throwable {
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<?> handBindException(BindException e) {
+        // Bind Exception
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult()
                 .getFieldErrors()
                 .forEach(error ->errors.put(error.getField(), error.getDefaultMessage()));
         return ResponseEntity.badRequest().body(errors);
     }
+    // Runtime Exception
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException e) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", e.getMessage());
+        return ResponseEntity.badRequest().body(error);
+    }
+
 }
