@@ -20,8 +20,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     public CourseServiceImpl(CourseRepository courseRepository) {
+
         this.courseRepository = courseRepository;
     }
+
     // Create
     @Override
     public Object create(CourseCreateReq request) {

@@ -26,20 +26,18 @@ public class AdminServiceImpl implements AdminService {
     // Login
     @Override
     public Object login(AdminLoginReq request) {
-        AdminEntity admin = adminRepository.findByUsername(request.getUsername()).orElseThrow(() -> new RuntimeException("User not found"));
+        AdminEntity admin = adminRepository.findByUsername(request.getUsername()).orElseThrow(() -> new RuntimeException("<Admin> Wrong username"));
         //check password:
         if(!admin.getPassword().equals(request.getPassword())) {
             throw new RuntimeException("Wrong password");
         }
-        String response = "Login successful";
-        return response;
+        return "<Admin> Login successful";
     }
 
     // Logout
     @Override
     public Object logout(int id) {
-        String response = String.format("Logout successful [%d]", id);
-        return response;
+        return String.format("<Admin> Logout successful [%d]", id);
     }
 
     // Create
