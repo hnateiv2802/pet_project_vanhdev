@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         newUser.setAge(request.getAge());
         userRepository.save(newUser);
 
-        return request;
+        return newUser;
     }
 
     // Read
